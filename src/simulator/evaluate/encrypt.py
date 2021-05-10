@@ -1,10 +1,10 @@
 import os
 import time
 import argparse
-from numpy import mean
+
+from numpy import mean, std
 
 from hks_pylib.files.generator import BMPImageGenerator, BytesGenerator
-from numpy.core.fromnumeric import std
 
 from _simulator.base.cryptor import Cryptor
 

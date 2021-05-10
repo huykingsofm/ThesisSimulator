@@ -26,5 +26,5 @@ setuptools.setup(
     package_dir={"": "src"},
     packages=setuptools.find_packages(where="src"),
     python_requires=">=3.7.1",
-    install_requires=["csbuilder>=0.0.2", "sft>=0.0.2"]
+    install_requires=["csbuilder>=0.0.2", "sft>=0.0.2", "hks_pylib>=0.0.8"]
 )

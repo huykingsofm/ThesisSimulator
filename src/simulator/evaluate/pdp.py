@@ -2,6 +2,7 @@ import os
 import time
 import argparse
 
+from numpy import std, mean
 
 from hks_pylib.cryptography.ciphers.keygenerator import KeyGenerator
 
