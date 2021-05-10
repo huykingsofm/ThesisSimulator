@@ -1,0 +1,10 @@
+{
+    "storage": "storage",
+    "users": "users.json",
+    "token": {
+        "secret": "secret",
+        "password": "default",
+        "size": 64
+    },
+    "log": "logs/server.log"
+}

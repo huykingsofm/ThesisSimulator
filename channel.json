@@ -1,0 +1,10 @@
+{
+    "host": "192.168.137.1",
+
+    "tport": 1999,
+    "uport": 1808,
+    "dport": 2001,
+
+    "cipher": null,
+    "password": "default"
+}
