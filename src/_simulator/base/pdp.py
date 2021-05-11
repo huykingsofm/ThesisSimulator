@@ -64,7 +64,7 @@ class PDP(object):
 
         self._blocksize = os.path.getsize(filename) // self._d
 
-    def generate_a_proof(self, key):
+    def generate_a_proof(self, key, buffer_size: int = 65535):
         nonce = Rand.randbytes(key, 32)
         indices = Rand.randperm(key, 0, self._d-1)[:self._r]
 
@@ -76,9 +76,16 @@ class PDP(object):
             for index in indices:
                 offset = index * self._blocksize
                 f.seek(offset)
-                block = f.read(self._blocksize)
 
-                self._hash_algorithm.update(block)
+                summary = 0
+                while summary < self._blocksize:
+                    nremain = self._blocksize - summary
+                    nread = min(buffer_size, nremain)
+
+                    block = f.read(nread)
+                    self._hash_algorithm.update(block)
+
+                    summary += nread
 
         return self._hash_algorithm.finalize()
 
