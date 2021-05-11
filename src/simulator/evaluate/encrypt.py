@@ -1,9 +1,6 @@
 import os
 import time
 import argparse
-
-from numpy import mean, std
-
 from hks_pylib.files.generator import BMPImageGenerator, BytesGenerator
 
 from _simulator.base.cryptor import Cryptor
@@ -14,15 +11,6 @@ class Encrypt:
         self.parser = parser
 
         self.parser.add_argument("input", help="The file path of sample.")
-
-        self.parser.add_argument(
-                "--round",
-                "-r",
-                help="The number of rounds which you want to perform "
-                "the evaluation. By default, round is 10.",
-                type=int,
-                default=10
-            )
 
         self.parser.add_argument(
                 "--decrypt",
@@ -49,19 +37,13 @@ class Encrypt:
 
         cryptor = Cryptor(generator)
 
-        elapsed_time = []
+        start = time.time()
+        if args.decrypt:
+            cryptor.decrypt("evaluation.temp", "default password")
+        else:
+            cryptor.encrypt("evaluation.temp", "default password")
+        end = time.time()
 
-        for _ in range(args.round):
-            start = time.time()
-            if args.decrypt:
-                cryptor.decrypt("evaluation.temp", "default password")
-            else:
-                cryptor.encrypt("evaluation.temp", "default password")
-            end = time.time()
+        os.remove("evaluation.temp")
 
-            os.remove("evaluation.temp")
-
-            elapsed_time.append(end - start)
-
-        print("The avarage cost is {:.3f}s".format(mean(elapsed_time)))
-        print("The standard deviation: {:.5f}s".format(std(elapsed_time)))
+        return end - start
