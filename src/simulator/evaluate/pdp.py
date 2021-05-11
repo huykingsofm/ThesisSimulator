@@ -50,7 +50,7 @@ class PDP:
         key = KeyGenerator(32).pwd2key(password)
         master_key = MasterKey(key)
 
-        pdp = ClientPDP(args.input, r=args.R, d=args.d)
+        pdp = ClientPDP(args.input, r=args.r, d=args.d)
 
         start = time.time()
         pdp.save("evaluate.temp", master_key, range(args.nproof + 1))

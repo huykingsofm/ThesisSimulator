@@ -51,7 +51,7 @@ class Evaluate:
                 cost = self.pdp.run(args)
 
             elapsed_time.append(cost)
-            print("Round {}: {:.3f}s:".format(i + 1, cost))
+            print("Round {}: {:.3f}s".format(i + 1, cost))
 
         print("The avarage cost is {:.3f}s".format(mean(elapsed_time)))
         print("The standard deviation: {:.5f}s".format(std(elapsed_time)))
